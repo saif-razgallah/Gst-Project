@@ -1,0 +1,70 @@
+{% block stylesheets %} 
+
+
+{% endblock %}
+
+
+{% block body %}
+
+			{{form_start(form,{ 'action' : path ("message.new",{id: destinataire.id,id2:id2}), 'method' : 'post' })}}
+		
+			
+			<div class="msg" style="padding-right: 17px;width: 600px;background-color: white;" >   
+      
+          <div class="modal-header" >
+            
+            <h4 class="modal-title"><i class="fa fa-envelope" aria-hidden="true"></i> CONTACTER 
+            	L'UTILISATEUR </h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          
+         <div class="modal-body" >
+                <div class="form-horizontal" >
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="pmRecipientName">Utilisateur</label>
+                      <div class="col-sm-10">
+                        <div class="alert alert-info"><span id="pmRecipientName" class="disabled">
+                        {{destinataire.prenom|striptags|title}} {{destinataire.nom|first|upper}}.</span></div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="pmContent">Message</label>
+                      <div class="col-sm-10">
+
+                      	{{ form_widget(form.contenu,{'attr':{'placeholder':'Ecrire votre message ici ..'}})}}
+                       
+                          <!--textarea id="pmContent" placeholder="Ecrire votre message ici .." class="form-control" rows="10" style="resize:none"></textarea-->
+                      </div>
+                    </div>
+                    </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadPage()">Fermer</button>
+              <script type="text/javascript">
+            function loadPage()
+            {
+
+                 window.location.reload()
+
+
+            }
+          </script>
+              <button id="submitContactForm" type="submit" class="btn btn-primary">Envoyer</button> 
+          </div>
+          
+        </div>
+
+        {{ form_end(form)}}	
+        
+
+	
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+	
+{% endblock %}
+

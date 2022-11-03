@@ -1,0 +1,103 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+  <!--DateTimePicker-->
+  <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/south-street/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style3.css')}}">
+
+{% endblock %}
+
+{% block part %}
+
+  <!-- profil -->
+
+           <!-- Message Errors--> 
+            {{include('profil/ScriptMsg.html.twig')}}
+
+
+
+            <!-- Update ticket data --> 
+
+  <div class="col-md-12 offset-0">
+                                  
+      <div class="panel panel-default">
+
+                <div class="panel-heading">
+                        <h6 class="panel-title">Créer un nouveau ticket</h6>
+                </div>
+                
+            <div class="panel-body" style="padding : 30px 30px 30px 30px;">       
+                 {{form_start(form)}}
+
+                 <!-- titre -->
+                    <div class="form-group has-feedback">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-tasks"></i></span>
+                        {{ form_widget(form.titre,{'attr':{'class':'form-control','placeholder':'Titre'}})}}
+                        </div>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group has-feedback">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-tasks"></i></span>
+                        {{ form_widget(form.description,{'attr':{'class':'form-control','placeholder':'Description'}})}}
+                        </div>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                     <!-- priorite -->
+                    <div class="form-group has-feedback">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-battery-half"></i></span>
+                        {{ form_widget(form.priorite,{'attr':{'class':'form-control','placeholder':'priorite'}})}}
+                        </div>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- responsable -->
+                    <div class="form-group has-feedback">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                        {{ form_widget(form.responsable,{'attr':{'class':'form-control','placeholder':'responsable'}})}}
+                        </div>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+    
+            </div>
+                  
+                  
+                  <!-- Button --> 
+                      <div class="panel-footer text-center">
+                        <input id="submitForm" type="submit" value="Créer" class="btn btn-success"></input>
+                      </div>
+                  {{ form_widget(form._token) }} <!-- render the CSRF Token-->
+                  {{ form_end(form,{'render_rest': false})}}
+                
+        <div>
+              
+  </div>
+          
+            
+
+  <!-- /profil -->
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+          <!--DateTimePicker-->
+          <script src="{{asset('js/vendors/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{asset('js/vendors/jquery-ui.min.js')}}"></script>
+            <script src="{{asset('js/calendar/Today.js')}}"></script>
+
+
+       <!-- /DateTimePicker-->
+
+{% endblock %}  

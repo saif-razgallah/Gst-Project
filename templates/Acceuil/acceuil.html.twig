@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+
+{% block stylesheets %} 
+
+		<link rel="stylesheet" type="text/css" href="{{asset('css/style1.css')}}">
+	
+{% endblock %}
+
+{% block body %}
+
+	<!-- Acceuil -->
+	
+<div class="row-fluid-wrapper  row-number-1">
+    <div  class="hs_cos_wrapper_type_custom_widget">
+        <div class="top-field hide-bg-img-on-mobile" style="background-color: #fafafa; background-image: url(&#39;https://www.favro.com/hubfs/linee-2.svg&#39;)">  
+            <div class="top-field__inner top-field__inner--short">
+                <div class="block__col block__col--text block__col--5">
+                    <div class="top-field__container">
+                        <h1 class="top-field__heading">
+                            Logiciel de gestion de tickets.
+                        </h1>
+                   
+                        <p class="top-field__paragraph"></p>
+                        <p  style="text-align: justify;">EasyWork, spécialiste en solutions informatiques, vous permet de découvrir comment un outil de ticketing vous permettra d’optimiser les performances, la fluidité, la gestion quotidienne et la sécurité informatique de votre entreprise</p>
+    					<p>&nbsp;</p>
+                        <p></p>
+                    
+                    </div>
+                </div>
+            
+                <div class="block__col block__col--7">
+                
+                    <div class="video-lightbox ">
+                        
+                            <img src="{{asset('images/acceuil/comp-hero.webp')}}" >
+                        
+                    </div>
+                </div>        
+             
+            </div>
+        </div>
+    </div>
+</div>
+		
+	<!-- Fin Acceuil -->
+
+			<!-- Avantage-->
+<br><br>
+		<section class="sections avantage">
+			<div class="container">
+				<div class="section-header text-center">
+					<h2 class="section-title">AVANTAGES</h2>
+					<div class="line"><span></span></div>
+
+					<p>Passez à Agile en toute simplicité</p>
+				</div>
+
+				<div class="row text-center">
+
+                <div class="col-md-4">
+                    <img id="info.magnolia.context.HTMLEscapingWebContextWrapper@32f3079e" alt="Icône" class="component__image" style="width:42px;height:42px;" src="https://wac-cdn.atlassian.com/dam/jcr:f7f91d46-4ce9-4955-bcdb-2967d9a5e9aa/organize-workflow.svg?cdnVersion=1206" loading="auto"><br><br>
+                    
+                    <h4 class="service-heading">EasyWork : Planification flexible</h4>
+                    <p class="text-muted">Avec les nombreuses fonctionnalités de planification de EasyWork Software, votre équipe peut planifier ses tâches de façon flexible en fonction de ses besoins.</p>
+                </div>
+
+                <div class="col-md-4">
+                    <img id="info.magnolia.context.HTMLEscapingWebContextWrapper@1f332ab8" alt="Icône" class="component__image" style="width:42px;height:42px;" src="https://wac-cdn.atlassian.com/dam/jcr:90691311-2ab1-41ff-ae98-a1ef782c5a96/organize-expand.svg?cdnVersion=1212" loading="auto"><br><br>
+                    <h4 class="service-heading">EasyWork : Évolution continue</h4>
+                    <p class="text-muted">Ajoutez des types de ticket, des champs, des workflows et modifiez-les à mesure que votre équipe évolue. Jira Software est une solution de gestion de projets agile conçue pour toutes les équipes, quelles qu'elles soient. </p>
+                </div>
+
+                <div class="col-md-4">
+                    <img id="info.magnolia.context.HTMLEscapingWebContextWrapper@1f332ab8" alt="Icône" class="component__image" style="width:42px;height:42px;" src="https://wac-cdn.atlassian.com/dam/jcr:135905fd-33ad-4cd7-adf0-02f93fcbadb6/finance-dollar%20dotted.svg?cdnVersion=1212" loading="auto"><br><br>
+                    <h4 class="service-heading">EasyWork : Priorisation axée sur la valeur</h4>
+                    <p class="text-muted">Organisez les user stories, les tickets et les bugs dans votre backlog de produit par simple glisser-déposer. Assurez-vous de maintenir en haut de la liste les stories les plus utiles pour les clients.</p>
+                </div>
+
+            </div>
+			</div>
+			</div>
+
+		</section>
+
+		<!-- /Avantage -->
+
+        <!-- Video -->
+        <section class="sections video-learn">
+         <div class="wrapper">
+
+                <div class="section-header text-center">
+                    <br><br>
+                    <h2 class="section-title">COMMENT CA MARCHE</h2>
+                    <div class="line"><span></span></div>
+
+                    <p>Démonstration fonctionnelle de EasyWork</p>
+                </div>
+
+            <video controls="controls" poster="{{asset('video/imgvideo.png')}}">
+           
+                 <source src="{{asset('video/EasyWork.mp4')}}" video="web/mp4">
+
+            </video>
+         
+
+         </div>   
+
+        </section>
+        <!--/Video-->
+
+	<!-- Footer -->
+
+		{{include('footer/footer.html.twig')}}
+
+	<!-- /Footer -->
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+		
+
+{% endblock %}
+

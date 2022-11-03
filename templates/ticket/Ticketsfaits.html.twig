@@ -1,0 +1,78 @@
+	{% if  Ticketsfaits == null %}
+				
+	<div class="panel panel-default" >
+	  
+	  <div class="panel-body" style="width:600px;">
+		<div class="alert alert-info">Aucun ticket</div>
+	  </div>
+
+	</div>
+
+	{% else %}
+	<div class="panel panel-default" style="padding: 10px">
+
+		<div class="panel-body">
+		    {% for Ticket in Ticketsfaits %}
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  
+				<div class="panel panel-default">
+			
+
+					<div class="panel-heading" role="tab" id="heading25" style="background-color: #ffffff">
+						
+						<h4 class="panel-title">
+
+							<a data-toggle="collapse" data-parent="#accordion" href="#55{{Ticket.id}}" aria-expanded="true" aria-controls="collapse25">
+
+								<span class="color-green glyphicon  glyphicon-tag"></span>
+								{{Ticket.titre}} <small></small>
+							
+								 <small><br><br></small>
+								<small style="padding-left: 25px; color: #34495e; color: #34495e">
+																	
+										Le{{(Ticket.datecreation|date(' d/m/Y'))}}
+								</small>
+								
+							</a>
+							<small style="padding-left: 25px; color: #34495e; color: #34495e">
+								<a href="#" class="btn-xs btn-default pull-right">
+									<span class="glyphicon glyphicon-plus color-blue"></span>
+								</a>
+							</small>
+					    </h4>
+					</div>
+							
+					<div id="55{{Ticket.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading25" style="">
+						<div class="panel-body">
+
+
+							   <strong>Description</strong><br>
+
+							    <table class="table table-hover">
+								    <tbody>
+
+										<tr>	
+											  <td>{{Ticket.description}}</td>
+											 
+											  <td>
+												<a href="{{path('ticket.show',{id: Ticket.id})}}" class=" btn btn-xs btn-primary">
+													Consulter <span class=" glyphicon glyphicon-chevron-right"></span>
+												</a>
+											  </td>
+										</tr>
+
+									
+
+									</tbody>
+							    </table>
+							    
+
+						</div>
+					</div>
+				</div>
+			  	
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+    {% endif %}

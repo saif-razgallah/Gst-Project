@@ -1,0 +1,70 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+		  <link rel="stylesheet" type="text/css" href="{{asset('css/style4.css')}}">
+
+
+{% endblock %}
+
+
+
+{% block part %}
+
+  <div class = "tabinator">
+  	<div style="font-size: 1.71429em;font-style: inherit;color: rgb(23, 43, 77);font-weight: 500;letter-spacing: -0.01em;overflow-x: hidden;text-overflow: ellipsis;white-space: nowrap;line-height: 32px;margin-top: 0px;margin-bottom: 20px;">
+								Tickets
+
+					</div>
+
+  <input type = "radio" id = "tab1" name = "tabs" checked>
+  <label for = "tab1"> &nbsp&nbsp&nbsp Tous les tickets &nbsp&nbsp&nbsp</label>
+
+  <input type = "radio" id = "tab2" name = "tabs">
+  <label for = "tab2"> &nbsp&nbsp&nbsp Mes tickets ouverts &nbsp&nbsp&nbsp</label>
+
+  <input type = "radio" id = "tab3" name = "tabs">
+  <label for = "tab3"> &nbsp&nbsp&nbsp Que J'ai crée &nbsp&nbsp&nbsp</label>
+
+  <input type = "radio" id = "tab4" name = "tabs">
+  <label for = "tab4"> &nbsp&nbsp&nbsp Tickets terminés  &nbsp&nbsp&nbsp</label>
+
+  <input type = "radio" id = "tab5" name = "tabs">
+  <label for = "tab5"> &nbsp&nbsp&nbsp Tickets à faire  &nbsp&nbsp&nbsp</label>
+
+  <div id = "content1">
+
+    {{include('ticket/TousLesTickets.html.twig')}}
+    
+  </div>
+  <div id = "content2">
+
+    {{include('ticket/MesTicketsOuverts.html.twig')}}
+    
+  </div>
+  <div id = "content3">
+
+    {{include('ticket/MesTicketsCrees.html.twig')}}
+    
+  </div>
+  <div id = "content4">
+
+    {{include('ticket/TicketsTermines.html.twig')}}
+   
+  </div>
+    <div id = "content5">
+
+    {{include('ticket/Ticketsfaits.html.twig')}}
+   
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+                <script src="{{asset('js/vendors/bootstrap.js')}}"></script>
+{% endblock %}	

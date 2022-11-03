@@ -1,0 +1,386 @@
+
+/* -------------------- Profil Information --------------------*/
+
+.InfoProfil {
+	
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: medium;
+}
+
+.InfoProfil a {
+    text-decoration: none;
+    color: #1e375c;
+}
+
+.InfoProfil h1,
+h2,
+h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  }
+.InfoProfil p {
+  margin: 0 0 15px;
+  font-size: 18px;
+  line-height: 1.72222;
+  }
+
+.InfoProfil .jumbotron strong {
+    font-weight: bold;
+    font:17.72px;
+    color: #000000;
+}  
+
+/*photo de profil*/
+.InfoProfil .thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 5px;
+  line-height: 1.72222;
+  background-color: #fff;
+  border: 2px solid #bdc3c7;
+  border-radius: 6px;
+  }
+
+.InfoProfil .btn {
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1.4;
+  border: none;
+  border-radius: 4px;
+  }
+/* btn commentaire*/
+.InfoProfil .btn-default {
+  color: #fff;
+  background-color: #bdc3c7;
+  }
+ 
+ /* btn */ 
+.InfoProfil .btn-primary {
+  color: #fff;
+  background-color: #1abc9c;
+  }
+
+ .InfoProfil .btn-primary:hover {
+  background-color: #1dd2af;
+} 
+
+ .InfoProfil .btn-primary:focus {
+  background-color: #1abc9c;
+} 
+
+
+
+.InfoProfil textarea {
+  font-style: 24px;
+  padding: 5px 11px;
+  line-height: 24px;
+  }
+
+.InfoProfil label {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 2.3;
+  }
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+  }
+
+
+.color-green {
+    color: rgb(41, 127, 184);
+}
+
+
+.color-red {
+    color: rgb(223, 35, 33);
+}
+
+
+/*-----------------------------partie 2--------------------------------*/
+
+
+.text-center {
+  text-align: center;
+}
+
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+ .col-xs-1,
+ .col-xs-4,
+ .col-md-4,
+ .col-xs-6, 
+ .col-xs-8,
+ .col-md-8,
+ .col-xs-12 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+ .col-xs-1,
+ .col-xs-4,
+ .col-xs-6,
+ .col-xs-8,
+ .col-xs-12 {
+  float: left;
+}
+
+/* 10dt*/
+.col-xs-8 {
+  width: 66.66666667%;
+}
+
+/* photo de profil*/
+.col-xs-6 {
+  width: 50%;
+}
+
+.col-xs-1 {
+  width: 8.33333333%;
+}
+
+
+@media (min-width: 992px) {
+  .col-md-4,
+  .col-md-8{
+    float: left;
+  }
+
+  .col-md-8 {
+    width: 66.66666667%;
+  }
+
+  .col-md-4 {
+    width: 33.33333333%;
+  }
+  
+}
+
+/* Table*/
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+
+/* commentaire*/
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+/* Collapse*/
+
+.collapse {
+  display: none;
+  visibility: hidden;
+}
+.collapse.in {
+  display: block;
+  visibility: visible;
+}
+tr.collapse.in {
+  display: table-row;
+}
+tbody.collapse.in {
+  display: table-row-group;
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+}
+
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 2;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+/* annonce publié*/
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #777777;
+  border-radius: 10px;
+}
+
+/* Details voyage*/
+
+.jumbotron {
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+}
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+  border-radius: 6px;
+}
+
+/* alert Tel*/
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+/* collapse numTel*/
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+
+/* ------------------------Panel--------------------*/
+
+ .panel {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-color: #273951;
+}
+ .panel-body {
+  padding: 15px;
+
+}
+
+
+/*-------------------------------- partie 3-------------------------------------*/
+
+
+/* commentaire */
+.container .panel-titre {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+ 
+  color: #FFFFFF;
+  background-color: #343A40;
+  border-color: #273951;
+}
+
+.container .panel-titre h4{
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+/**/
+.container .panel-info {
+    border-color: #273951; 
+}
+.container .panel-default{
+  border-color: #273951; 
+}
+.container .panel-title {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  color: #FFFFFF;
+  background-color: #34495e;
+  border-color: #273951;
+}
+
+
+/*-------------------------------- partie 3-------------------------------------*/
+
+.badge.badge-primary{
+    background-color: #337ab6;
+}
+
+.InfoProfil .panel{
+    border-radius: 0px;
+}
+.label-primary {
+    background-color: #297fb8;
+}
+
+.label-success {
+    background-color: #1abb9b;
+}
+
+.label-non {
+    background-color: #5cB85C;
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+}
+
+.InfoProfil a:hover,
+.InfoProfil a:focus {
+    color: #000000;
+    text-decoration: none;
+}
+
+.text-center  a:hover,.text-center  a:focus{
+  color:#FFFFFF;
+} 
+
+
+.media .thumbnail {
+  width: 80px;
+  border: 2px solid #bdc3c7;
+}

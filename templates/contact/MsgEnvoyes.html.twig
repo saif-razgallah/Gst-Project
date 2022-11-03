@@ -1,0 +1,82 @@
+{% if  ListMsgEnvoyer == null %}
+                
+    <div class="panel panel-default" >
+      
+      <div class="panel-body" style="width:600px;">
+        <div class="alert alert-info">Aucun message envoyés</div>
+      </div>
+
+    </div>
+
+{% else %}
+<div class="tab-content">
+ 
+    <div class="list-group">
+			                        					
+		{% for ListMsgEnv in ListMsgEnvoyer %}
+            
+            <div class="list-group-item">
+
+                    <form method="post" action="{{path('message.delete',{id: ListMsgEnv.id})}}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class=" btn  btn-danger ">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                    </form>
+
+                    <a  data-toggle="collapse" data-parent="#accordion" href="#55{{ListMsgEnv.id}}" style="text-decoration:none;">	
+             
+                        <span style="min-width: 120px; display: inline-block; margin-left: 20px;color:#555555;" class="name">
+                            <strong>
+
+                                {% for TousLesUtilisateur in TousLesUtilisateurs %}
+
+                                    {% if  TousLesUtilisateur.id == ListMsgEnv.destinataire.id %}
+                                   
+                                        {{ListMsgEnv.destinataire.prenom|striptags|title}} {{ListMsgEnv.destinataire.nom|first|upper}}.
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </strong></span>
+                        
+                        <span style="color:#555555;"class="">{{ListMsgEnv.contenu|truncate(20)}} </span>
+                        <span style="font-size: 11px;" class="text-muted"> (Cliquez pour lire la suite)</span>
+                        <span class="badge" style="float:right;">{{ListMsgEnv.dateenvoi|date('d/m/Y')}}</span>
+                    </a>
+            </div>
+                    <div id="55{{ListMsgEnv.id}}" class="panel-collapse collapse">	
+                     	<div class="panel panel-primary">
+                            <div class="panel-body panel-body-chat">
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">
+
+                                            {% for TousLesUtilisateur in TousLesUtilisateurs %}
+
+                                                {% if  TousLesUtilisateur.id == ListMsgEnv.destinataire.id %}
+                                               
+                                                    {{ListMsgEnv.destinataire.prenom|striptags|title}} {{ListMsgEnv.destinataire.nom|first|upper}}.
+
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                        </strong>
+                                         <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                            {{(ListMsgEnv.dateenvoi|date(' d/m/Y à'))}}
+                                            {{(ListMsgEnv.dateenvoi|date('H\\hi'))}}
+                                        </small>
+                                    </div>
+                                    <p>{{ListMsgEnv.contenu}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+	    {% endfor %}   
+    </div>   
+</div>
+{% endif %}

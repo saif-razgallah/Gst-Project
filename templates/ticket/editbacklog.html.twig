@@ -1,0 +1,78 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+
+  
+{% endblock %}
+
+{% block part %}
+
+	<div class="col-md-12 offset-0">
+
+    	<div class="panel panel-default">
+
+				<div class="container mt-4" style="padding-left:25px;">
+
+					<div style="color:#6B778C;font:14px;">
+
+						Projets /
+						{% if app.user.projets|length == 0 %}
+
+				                {% for projet in app.user.chefequipe %}
+				                       {% if projet.id == app.user.projetactuel %}
+				                              {{projet.titre}}
+				                       {% endif %}
+				                {% endfor %}
+				                
+				            {% else %}  
+
+				                {% for projet in app.user.projets %}
+				                         {% if projet.id == app.user.projetactuel %}
+				                                {{projet.titre}}
+				                         {% endif %}
+				                {% endfor %}
+				                
+				            {% endif %}
+             			/ Tickets
+
+					</div>
+
+					
+
+					<div style="font-size: 1.71429em;font-style: inherit;color: rgb(23, 43, 77);font-weight: 500;letter-spacing: -0.01em;overflow-x: hidden;text-overflow: ellipsis;white-space: nowrap;line-height: 32px;margin-top: 0px;">
+								Informations
+
+					</div>
+					<br>
+
+					
+
+					{{form_start(form)}}
+
+					<div class="row">
+						<div class="col-md-6">{{form_row(form.sprint,{'attr':{'class':'form-control','placeholder':'responsable'}})}}</div>
+						
+					</div><br>
+
+					
+						<button class="btn btn-primary">Editer</button>
+					</div><br><br>	
+
+					
+
+
+					
+
+					{{ form_widget(form._token) }} <!-- render the CSRF Token-->
+					{{ form_end(form,{'render_rest': false})}}
+
+
+
+
+				</div>
+		</div>
+	</div>
+
+{% endblock %}

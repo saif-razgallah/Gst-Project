@@ -1,0 +1,47 @@
+{% block stylesheets %} 
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="{{asset('css/stylePopup.css')}}">	
+
+
+
+{% endblock %}
+
+
+{% block body %}
+	
+		<div class="popup">
+			<div class="modal-body text-center">
+   
+				<div class="icon-box">
+					<img class="imge" src="{{asset('images/search/echec.png')}}"
+				</div>
+				<h4>Désolé</h4>	
+				<p>vous ne pouvez pas envoyer de message à cette personne</p>
+				<button class="btn btn-danger" data-dismiss="modal" onclick="loadPage()"><span>OK</span> </button>
+					<script type="text/javascript">
+					  function loadPage()
+						{
+
+						     window.location.reload()
+
+
+						}
+					</script>
+
+
+			</div>
+		</div>	
+	
+
+	
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+{% endblock %}
+

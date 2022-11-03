@@ -1,0 +1,45 @@
+/*Drop menu style*/ 
+.dropdown-menu{
+  
+  border-radius:3px !important;
+  border:1px solid rgba(0,0,0,0.15);
+  border-radius:5px;
+  box-shadow:0 4px 9px rgba(0,0,0,0.1);
+  padding:0px
+}
+  
+/* Drop menu Raduis*/ 
+.dropdown-menu li:first-child a{
+  
+  border-radius:3px 3px 0 0;
+  border-top:medium none
+}
+
+/* Important Style DropMenu*/   
+.dropdown-menu li a{
+  
+  border-top:1px solid #eee;
+  color:#444;
+  display:block;
+  height:42px;
+  margin:0;
+  padding:11px 15px 0;
+  position:relative;
+  text-transform:uppercase;
+  font-size:11px;
+  font-weight:600
+}
+
+/* Style Icon NavBar*/    
+.dropdown-menu li a .fa{
+  margin-right:5px
+}
+
+.dropdown-menu li a:hover {
+  background-color: #eee;
+}
+
+
+.img-circle {
+    width: 30px;
+    }

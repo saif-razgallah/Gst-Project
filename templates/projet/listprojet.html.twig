@@ -1,0 +1,95 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+
+  
+{% endblock %}
+
+{% block part %}
+
+    <div class="col-md-12 offset-0">
+
+    	<div class="panel panel-default">
+
+
+						<div class="container mt-4">
+
+							<div style="font-size: 1.71429em;font-style: inherit;color: rgb(23, 43, 77);font-weight: 500;letter-spacing: -0.01em;overflow-x: hidden;text-overflow: ellipsis;white-space: nowrap;line-height: 32px;margin-top: 0px;">
+								Projets
+
+							</div>
+							<br>
+
+
+							{% for message in app.flashes('success') %}
+								<div class="alert alert-success">
+									{{message}}
+
+								</div>
+
+							{% endfor %}	
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Date Début</th>
+										<th>Date Fin</th>
+										<th>Chef de projet</th>
+										<th>Chef d'équipe</th>
+									</tr>
+
+								</thead>
+
+								<tbody>
+
+								{% for Projet in Projets %}
+									<tr>
+										<td><a href="{{path('template.projet',{id: Projet.id})}}">{{Projet.titre}}</a></td>
+										<td>{{Projet.datedebut ?Projet.datedebut|date('Y-m-d')}}</td>
+										<td>{{Projet.datefin ?Projet.datefin|date('Y-m-d')}}</td>
+										<td>{{Projet.getUtilisateur().nom|striptags|title}}&nbsp;{{Projet.getUtilisateur().prenom|striptags|title}}
+										<td>{{Projet.getResponsable().nom|striptags|title}}&nbsp;{{Projet.getResponsable().prenom|striptags|title}}</td></td>
+										<td>
+										<td>	
+											<div class="btn-group">
+												<span class="sc-kpOJdX kiIRRD" data-toggle="dropdown" role="img" aria-label="Plus">
+													<svg width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+														<g fill="currentColor" fill-rule="evenodd">
+															<circle cx="5" cy="12" r="2"></circle><circle cx="12" cy="12" r="2">
+															</circle>
+															<circle cx="19" cy="12" r="2">
+															</circle>
+														</g>
+													</svg>
+												</span>
+											  
+											  <div class="dropdown-menu dropdown-menu-right">
+											    
+											    <a href="{{path('projet_list.edit',{id: Projet.id})}}" class="dropdown-item">Paramétres du projet</a>
+
+											    <form method="post" action="{{path('projet_list.delete',{id: Projet.id})}}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer?')">
+													<input type="hidden" name="_method" value="DELETE">
+													<button class="btn btn-link btn-block dropdown-item" style="color:#000000;">Supprimer le projet</button>
+												</form>
+												  
+											  </div>
+											</div>
+										</td>
+									</tr>
+								{% endfor %}
+
+								</tbody>
+
+							</table>
+
+
+						</div>
+
+
+		</div>				
+	</div>					
+
+{% endblock %}

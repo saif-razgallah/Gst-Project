@@ -1,0 +1,325 @@
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+
+
+ 
+{% endblock %}
+  <link rel="stylesheet" type="text/css" href="{{asset('css/vendors/bootstrap.css')}}">
+
+  <link rel="stylesheet" type="text/css" href="{{asset('css/styleTemp.css')}}">
+
+  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+{% block body %}
+
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item dropdown res-dis-nn">
+        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link ">Projets <span class="angle-down-topmenu">
+          <i class="fa fa-angle-down"></i>
+        </span></a>
+        <div role="menu" class="dropdown-menu animated zoomIn">
+        <a href="{{path('projet_list')}}" class="dropdown-item">Afficher tous les projets&nbsp;&nbsp;</a>
+        {% if app.user.fonction == 'chefprojet' or app.user.fonction == 'chefequipe'  %}
+        <a href="{{path('projet_new')}}" class="dropdown-item">Créer un projet</a>
+        {% else %}
+         <a class="dropdown-item" href="#"data-toggle="modal" data-target="#sendMessageModal">Créer un projet</a>
+        {% endif %}
+
+        </div>
+      </li>
+      <li class="nav-item dropdown res-dis-nn">
+        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link ">Créer <span class="angle-down-topmenu">
+          <i class="fa fa-angle-down"></i>
+        </span></a>
+        <div role="menu" class="dropdown-menu animated zoomIn">
+ 
+        {% if app.user.projet == null or app.user.fonction != 'chefequipe'  %}
+
+          <a class="dropdown-item" href="#"data-toggle="modal" data-target="#sendMessageModal">Créer un sprint</a>
+        
+        {% else %}  
+
+        <a href="{{path('sprint_new',{id: app.user.projet.getId()})}}" class="dropdown-item">Créer un sprint</a>
+                  
+        {% endif %} 
+
+         {% if app.user.projet == null   %}
+
+          <a class="dropdown-item" href="#"data-toggle="modal" data-target="#sendMessageModal">Créer un ticket</a>
+        {% else %}  
+
+        <a href="{{path('ticket_new',{id: app.user.projet.getId()})}}" class="dropdown-item">Créer un ticket</a>
+                  
+        {% endif %} 
+        </div>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+     
+      <!-- Propriataire-->
+ 
+              <li class="dropdown">
+                <a href="#" class="nav-link connecte dropdown-toggle"  id="login" data-id="464500" title="{{app.user.prenom|striptags|title}} {{app.user.nom|striptags|title}}" data-toggle="dropdown" aria-expanded="false">
+                        {% if app.user.photo == null  %}
+                          
+                          <img class="img-circle elevation-2" alt="User Image" src="{{asset('images/search/imgprofil.png')}}">
+                        {% else %}  
+                            <img class="img-circle elevation-2" alt="User Image" src="{{asset('uploads/') ~ app.user.photo}}">
+                            
+                        {% endif %} 
+
+                    
+                       <span class="text-ellipsis pseudo-header">{{app.user.prenom|striptags|title}} {{app.user.nom|striptags|title}}</span>
+                </a>
+                          
+                <ul class="dropdown-menu niveau2">
+                    <li class="first dropdown_menu"><a href="{{path('profil_util.edit')}}"><i class="fa fa-user"></i>PROFILE</a></li>          
+                    <li class="dropdown_menu"><a href="{{path('contact')}}"><i class="fas fa-envelope"></i> MESSAGES</a></li>
+                    <li class="dropdown_menu"><a href="{{path('profil_util.password')}}"><i class="nav-icon fas fa-cog"></i> SETTINGS</a></li>
+                    <li class="dropdown_menu"><a href="{{path('security_logout')}}"><i class="fa fa-power-off"></i> DÉCONNEXION</a></li>
+                </ul>
+      <!-- end propriataire-->
+       <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+            class="fas fa-th-large"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{{asset('dist/img/diamand.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">EasyWork</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{asset('dist/img/Project.png')}}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{{path('dashboard')}}" class="d-block">
+            {% if app.user.projet != null %}
+             {{app.user.projet.getTitre()}}  
+            {% endif %} 
+
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+          <li class="nav-item">
+            <a href="{{path('sprint_list')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Backlog
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{path('ticket_list')}}" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Tickets
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Rapports
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Graphique Burndown</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Graphique de vélocité</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/editors.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rapport de sprint</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li style="border-top: 1px solid #4f5962;"></li>
+          <br>
+            <li class="nav-item">
+            <a href="{{path('calculatrice')}}" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Calendrier
+              </p>
+            </a>
+           </li>
+           </li>
+            <li class="nav-item">
+
+              {% if app.user.projet == null  %}
+                          
+                <a href="#" class="nav-link">
+              {% else %}  
+
+                  <a href="{{path('projet_list.edit',{id: app.user.projet.getId()})}}" class="nav-link">
+                  
+              {% endif %} 
+
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Paramétre du Projet
+              </p>
+            </a>
+           </li>
+
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <br>
+    <br>
+    
+    <!-- Main content -->
+    <section class="content">
+      {% block part %}
+                  
+  
+            
+      {% endblock %}
+    </section>  
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2020-2021 <a href="http://adminlte.io">Saif Razgallah</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 4.4.3
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- Form Message-->
+  <div  class="modal fade" id="sendMessageModal" style="position:absolute; top: 0%; left: -2%;">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+
+        <div class="popup">
+      <div class="modal-body text-center">
+   
+        <div class="icon-box">
+          <img class="imge" src="{{asset('images/search/echec.png')}}"
+        </div>
+        <h4>Désolé</h4> 
+        <p>vous ne pouvez pas utiliser cette fonctionnalité </p>
+        <button class="btn btn-danger" data-dismiss="modal" onclick="loadPage()"><span>OK</span> </button>
+          <script type="text/javascript">
+            function loadPage()
+            {
+
+                 window.location.reload()
+
+            }
+          </script>
+
+
+      </div>
+    </div>  
+          
+        </div>
+    </div>
+  </div>      
+  <!---->
+
+{% endblock %}        
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap -->
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('dist/js/adminlte.js')}}"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{{asset('dist/js/demo.js')}}"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
+<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>   
+<!-- Script General-->
+                <script src="{{asset('js/vendors/jquery-3.4.1.min.js')}}"></script>
+                <script src="{{asset('js/vendors/bootstrap.js')}}"></script>
+
+{% block javascripts %}
+
+
+
+   
+{% endblock %}  

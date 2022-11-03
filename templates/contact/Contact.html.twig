@@ -1,0 +1,79 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+
+	<link rel="stylesheet" type="text/css" href="{{asset('css/style6.css')}}">
+
+
+
+{% endblock %}
+
+{% block part %}
+
+<!-- Message Errors-->	
+
+		
+<!-- *************************************  Liste Messages  *********************************************** -->
+    <div class="covoiturages"> 
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-md-50"> 
+	                <div class="panel-body">
+	                    <div role="tabpanel" >
+
+
+		                    <!-- Nav tabs -->
+		                    <ul class="nav nav-tabs" role="tablist">
+			                    <li role="presentation" class="active">
+			                    	<a href="#annonce" aria-controls="annonce" role="tab" data-toggle="tab">
+			                    		<h3 style=" margin: 0px">
+			                    		<span class="glyphicon glyphicon-inbox" style="font-size:14px;"></span> &nbsp
+			                    		 Messages reçus</h3></a>
+			                    </li>
+			                    <li role="presentation" class="">
+			                    	<a href="#reservation" aria-controls="reservation" role="tab" data-toggle="tab">
+			                    		<h3 style=" margin: 0px"><span class="glyphicon glyphicon-inbox" style="font-size:14px;"></span>&nbsp Messages envoyés</h3>
+			                    	</a>
+			                    </li>
+		                    </ul>
+
+
+		                	<!-- Tab panes -->
+					 	    <div class="tab-content">
+									
+								<div role="tabpanel" class="tab-pane active" id="annonce" >
+
+									{{include('contact/MsgRecus.html.twig')}}
+
+								</div>
+
+								<div role="tabpanel" class="tab-pane" id="reservation">
+
+									{{include('contact/MsgEnvoyes.html.twig')}}
+
+								</div>	
+
+							</div>		
+	                    </div>
+	                </div>
+	        	</div>
+	        </div>
+        </div>
+    </div>
+
+
+
+<!-- **************************************************************************************************-->
+	
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+	                <script src="{{asset('js/vendors/bootstrap.js')}}"></script>
+
+{% endblock %}
+

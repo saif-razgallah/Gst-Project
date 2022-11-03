@@ -1,0 +1,85 @@
+
+/* ------------------------------Covoiturage----------------------------------------*/
+
+
+/* titre NAV*/
+
+.covoiturages .nav-tabs h3{
+	/*font-size: 18px;
+	color:#000000;*/
+	font-size: 18px;
+	color:#555555;
+	font-family:  "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.covoiturages .tab-content h4{
+  /*font-size: 14px;
+  color:#1E375c;*/
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.72222;
+  color:#1E375c;  
+
+}
+
+.covoiturages .tab-content .panel-footer .input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    background-color: #ffffff;
+}
+
+
+.covoiturages .container {
+    width: 970px;
+}
+
+.covoiturages .container .row .panel-body .tab-content .panel-default
+{
+	width: 940px;
+	border-top: 0;
+	border-top-left-radius:0px;
+	border-top-right-radius:0px;
+
+}
+.covoiturages .container .row .panel-body .tab-content .panel-default .panel-group .panel-default
+{
+	border-top: outset;
+	border-width:1px; 
+	width: 600px;
+}
+
+.covoiturages .panel-body .table-hover .aa{
+	text-decoration: none;
+	color: #333333;
+	
+}
+	
+.covoiturages .table-hover .btn-inverse {
+    color: #fff;
+    background-color: #34495e;
+}
+
+.covoiturages .table-hover .btn-invers {
+    color: #fff;
+    background-color: #1ABC9C;
+}
+
+	   
+
+.covoiturages .table-hover  a:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+/*---------------------------------------Contact --------------------------------*/
+
+
+.covoiturages .tab-content .collapse .panel-primary
+{
+    border-color: #ddd;
+    border-top-left-radius:0px;
+	border-top-right-radius:0px;
+
+}

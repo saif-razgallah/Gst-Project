@@ -1,0 +1,316 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+
+          <link rel="stylesheet" type="text/css" href="{{asset('css/style5.css')}}">
+
+ 
+{% endblock %}
+
+
+{% block part %}
+
+
+
+<div class="InfoProfil" >
+
+    <div class="container" >
+            
+      <div class="col-md-8">
+        <div class="panel panel-default">     
+          <div class="panel-body">
+                &nbsp;<table class="table">
+                   <thead>
+                      <tr><td><div style="font-weight:bold" > Titre : </div></td>
+                       <td>{{ticket.titre}} </td> 
+                   </tr></thead>
+                   <tbody>
+                       <tr>
+                          <td><div style="font-weight:bold" > Description: </div></td>
+                          <td>{{ticket.description}}</td>
+                       </tr>
+                       <tr>
+                          <td><div style="font-weight:bold" > Priorité : </div> </td>
+                          <td>{{ticket.priorite}}</td>
+                       </tr>
+                       <tr>
+                          <td><div style="font-weight:bold" > Statut : </div> </td>
+                          <td>
+                            {% if ticket.statut == 'nonentame' %}
+                                    Non Entamé
+                            {% elseif ticket.statut == 'encours' %}  
+                                    En Cours
+                            {% else %} 
+                                    Achevée
+                            {% endif %}   
+                            
+                            
+                          </td>
+                       </tr>
+                       <tr>
+                           <td><div style="font-weight:bold" > Date de création : </div> </td>
+                           <td>{{ticket.datecreation|date(' d/m/Y ')}}</td>
+                       </tr>
+                       <tr>
+                           <td><div style="font-weight:bold" > Projet : </div> </td>
+                           <td>
+
+                            {% if app.user.projet != null %}
+                                 {{app.user.projet.getTitre()}}  
+                            {% endif %}
+
+                           </td>
+                       </tr>
+                       <tr></tr>
+                   </tbody>
+                </table>
+              
+          </div>
+        </div>
+        <div class="panel panel-info">
+             <div class="panel-titre">
+                 <h4>
+                     Commentaires 
+                 </h4>
+             </div>
+             <div class="panel-body">
+
+                  <div style="padding-bottom: 30px">
+                    {% for Commentaire in Commentaires %}
+                      {% if Commentaire.utilisateur.id == ticket.utilisateur.id %}
+
+                    <!---->
+                      <div class="row">
+                             <div class="col-xs-12" style="border-bottom: 1px solid #e7e7e7; padding-top: 10px; padding-bottom: 10px">
+                                <div class="media pull-right color-blue">
+                                 <div class="media-body" style="width:230px">
+                                   <h4 class="media-heading">
+                                     
+                                      {{Commentaire.utilisateur.prenom|striptags|title}} {{Commentaire.utilisateur.nom|striptags|title}}
+                                     
+                                     <small>
+                                       {% set startDate = Commentaire.date_envoi|date('d-M-y H.i.s') %}
+                            
+                                      {% set difference = date('now'|date('d-M-y H.i.s',"Africa/Tunis") ).diff(date(startDate)) %}
+
+                                      
+                                      {% set leftDays = difference.days %}
+                                      {% set leftHours = difference.h %}
+                                      {% set leftMinute = difference.i %}  
+                                      {% set leftSeconde = difference.s %}  
+                                      
+                                      {% if leftDays == 0 and leftHours == 0 and leftMinute == 0 %}
+                                        il y a {{leftSeconde}} secondes
+                                      {% elseif leftDays == 0 and leftHours == 0    %}
+                                        il y a {{leftMinute}} minutes
+                                      {% elseif leftDays == 0 %}   
+                                        il y a {{leftHours}} heures
+                                      {% else %}
+                                        il y a {{leftDays}} jours  
+                                      {% endif %}
+                                     
+                                     </small>
+              
+                                   </h4>
+                                   {{Commentaire.contenu}}
+                                   
+                                 </div>
+                                  <div class="media-right">
+                                    <a href="http://www.wasalni-tunisie.com/profil/19">
+                                      <div class="thumbnail">
+                                      <img class="media-object" src="{{asset('uploads/') ~ Commentaire.utilisateur.photo}}"></img>
+                                      </div>
+                                    </a>
+                                  </div>
+                              </div>
+                          </div>
+                         </div>
+                      {% else %} 
+                      <div class="row ">
+                          <div class="col-xs-12 " style="border-bottom: 1px solid #e7e7e7; padding-top: 10px; padding-bottom:10px" >
+                            <div class="media">
+                                 <div class="media-left">
+                                    <a href="#">
+                                       <div class="thumbnail">
+                                         <img class="media-object" src="{{asset('uploads/') ~ Commentaire.utilisateur.photo}}"></img>
+                                       </div>
+                                    </a>
+                                 </div>
+                                 <div class="media-body">
+                                   <h4 class="media-heading">
+                                    {{Commentaire.utilisateur.prenom|striptags|title}} {{Commentaire.utilisateur.nom|striptags|title}}  
+                                   <small>
+                                    
+                                       {% set startDate = Commentaire.date_envoi|date('d-M-y H.i.s') %}
+                            
+                                      {% set difference = date('now'|date('d-M-y H.i.s',"Africa/Tunis") ).diff(date(startDate)) %}
+
+                                      
+                                      {% set leftDays = difference.days %}
+                                      {% set leftHours = difference.h %}
+                                      {% set leftMinute = difference.i %}  
+                                      {% set leftSeconde = difference.s %}  
+                                      
+                                      {% if leftDays == 0 and leftHours == 0 and leftMinute == 0 %}
+                                        il y a {{leftSeconde}} secondes
+                                      {% elseif leftDays == 0 and leftHours == 0    %}
+                                        il y a {{leftMinute}} minutes
+                                      {% elseif leftDays == 0 %}   
+                                        il y a {{leftHours}} heures
+                                      {% else %}
+                                        il y a {{leftDays}} jours  
+                                      {% endif %}
+                                   </small>
+                                   </h4>
+                                   {{Commentaire.contenu}}
+                                 </div>
+                            </div>
+                          </div>
+                      </div>
+                    {% endif %}
+                    {% endfor %}  
+                
+                  </div>
+                  
+                  {{form_start(form)}}
+                  <!--form role="form" method="POST" action="#"-->
+                     
+
+                     <div class="form-group">
+                         <label for="InputC">
+                          <strong> vous pouvez laisser vos commentaires et suggestions !</strong>
+                         </label>
+                      
+                         
+                     </div>
+                     <div>
+                        {{ form_widget(form.contenu)}}
+                     </div><br>
+                     
+
+                     <button type="submit" class="btn btn-default">Envoyer</button>
+                     {{ form_end(form)}}
+                  <!--/form-->
+              </div>
+        </div>
+     </div>
+
+
+      <div class="col-md-4">
+          <div class="panel panel-info">
+                    <br>
+                    <br>
+
+                <table>
+                    <tr>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td>
+                        
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          à faire
+                        </button>
+
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{{path('ticket.encours',{id: ticket.id})}}">En cours</a>
+                          <a class="dropdown-item" href="{{path('ticket.termine',{id: ticket.id})}}">Terminé</a>                       
+                        </div>
+
+                      </td><td>&nbsp;&nbsp;</td>
+                      <td>
+
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Message
+                        </button>
+
+                        <div class="dropdown-menu">
+                          {% if ticket.responsable != null %}
+                          <a class="dropdown-item" href="{{path('message.new',{id: ticket.responsable.id,id2: ticket.id})}}"data-toggle="modal" data-target="#sendMessageModal1">Responsable</a>
+                        {% endif %}
+                          <a class="dropdown-item" href="{{path('message.new',{id: ticket.utilisateur.id,id2: ticket.id})}}"data-toggle="modal" data-target="#sendMessageModal1">Rapporteur</a>                    
+                        </div>
+
+                      </td>
+                    </tr>
+  
+                  </table>          
+                      
+            <!---->
+            <br>
+            <div class="panel-body">
+              <div class="row">
+                         
+
+                <div class="col-xs-12">
+                {% if ticket.responsable != null  %}
+                  <div style="font-weight:bold" > Responsable : </div> 
+                 
+                  <p>
+                          
+                      <div class="dropdown">
+
+                         {% if ticket.responsable.photo == null  %}
+                          
+                          <img class="img-circle elevation-2" alt="User Image" src="{{asset('images/search/imgprofil.png')}}">
+                        {% else %}  
+                            <img class="img-circle elevation-2" alt="User Image" src="{{asset('uploads/') ~ ticket.responsable.photo}}">
+                            
+                        {% endif %} &nbsp;
+
+                        {{ticket.responsable.nom}} {{ticket.responsable.prenom}} &nbsp;&nbsp;&nbsp;
+                      </div>
+
+     
+                  </p>
+                {% endif %}
+                  <div style="font-weight:bold" > Rapporteur : </div> 
+                  
+                   <p>
+                      <br>
+                      {% if ticket.utilisateur.photo == null  %}
+                          
+                          <img class="img-circle elevation-2" alt="User Image" src="{{asset('images/search/imgprofil.png')}}">
+                        {% else %}  
+                            <img class="img-circle elevation-2" alt="User Image" src="{{asset('uploads/') ~ ticket.utilisateur.photo}}">
+                            
+                        {% endif %} &nbsp;
+                         {{ticket.utilisateur.nom}} {{ticket.utilisateur.prenom}} <br>
+                  </p>
+                </div>
+             </div>
+          </div>
+          </div>
+
+
+    </div>
+</div>
+             
+</div>
+  
+    <!-- Form Message-->
+  <div  class="modal fade" id="sendMessageModal1" style="position:absolute; top: 0%; left: -2%;">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+
+        
+          
+        </div>
+    </div>
+  </div>      
+
+  <!-- /Form Message--> 
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+   <!-- Script General-->
+                <script src="{{asset('js/vendors/jquery-3.4.1.min.js')}}"></script>
+                <script src="{{asset('js/vendors/bootstrap.js')}}"></script>
+{% endblock %}
+

@@ -1,0 +1,115 @@
+{% if  ListMsgReçus == null %}
+                
+    <div class="panel panel-default" >
+      
+      <div class="panel-body" style="width:600px;">
+        <div class="alert alert-info">Aucun message reçus</div>
+      </div>
+
+    </div>
+
+{% else %}
+
+<div class="tab-content">
+
+    
+        
+    <div class="list-group">
+    	
+        {% for ListMsgReçu in ListMsgReçus %}
+
+        <div class="list-group-item">   
+
+                <form method="post" action="{{path('message.delete',{id: ListMsgReçu.id})}}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class=" btn  btn-danger ">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                </form> 
+
+            	<a data-toggle="collapse" data-parent="#accordion" href="#33{{ListMsgReçu.id}}" style="text-decoration:none;">
+
+
+                    <span style="min-width: 120px; display: inline-block; margin-left: 20px; color:#555555;" >
+
+                        <strong>
+
+                            {% for TousLesUtilisateur in TousLesUtilisateurs %}
+
+                                {% if  TousLesUtilisateur.id == ListMsgReçu.expediteur.id %}
+                               
+                                    {{ListMsgReçu.expediteur.prenom|striptags|title}} {{ListMsgReçu.expediteur.nom|first|upper}}.
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </strong>
+
+                    </span>
+                    
+                    <span  style="color:#555555;" class="">{{ListMsgReçu.contenu|truncate(20)}}</span>
+                    <span style="font-size: 11px;" class="text-muted"> (Cliquez pour lire la suite)</span>
+                    <span class="badge" style="float:right;">{{ListMsgReçu.dateenvoi|date('d/m/Y')}}</span>
+                    <span class="pull-right">
+                    	<span class=""></span>
+                    </span>
+                </a>
+		</div>	
+		<div id="33{{ListMsgReçu.id}}" class="panel-collapse collapse">	
+         	<div class="panel panel-primary">
+
+                <div class="panel-body panel-body-chat">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">
+
+                                        {% for TousLesUtilisateur in TousLesUtilisateurs %}
+
+                                            {% if  TousLesUtilisateur.id == ListMsgReçu.expediteur.id %}
+                                           
+                                                {{ListMsgReçu.expediteur.prenom|striptags|title}} {{ListMsgReçu.expediteur.nom|first|upper}}.
+
+                                            {% endif %}
+
+                                        {% endfor %}
+
+                                    </strong> 
+                                        <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                                {{(ListMsgReçu.dateenvoi|date(' d/m/Y à'))}}
+                                            {{(ListMsgReçu.dateenvoi|date('H\\hi'))}}
+                                        </small>
+                                </div>
+                                <p>{{ListMsgReçu.contenu}}</p>
+                            </div>
+                </div>
+                
+                <div class="panel-footer">
+
+                <form action="{{path('RenvoyerMsg.new',{id: ListMsgReçu.expediteur.id})}}"method="post" >
+                    
+                        <div class="input-group"  >
+
+                            <textarea  required="required" placeholder="Ecrire votre message ici .." name="RepondreMsg" class="form-control pm-reply-content" rows="1" style="resize:none;width: 750px;"></textarea> 
+                            
+                            <button style="width: 150px; height:34px;" type="submit" class=" input-group-addon btn btn-warning ">Répondre</button>                            
+
+                        </div>     
+                </form>               
+                </div>
+                
+            </div>
+        </div>
+
+        {% endfor %}
+			    
+    </div>
+    
+</div>
+{% endif %}
+    
+    
+    
+    
+	

@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %} 
+
+  <link rel="stylesheet" type="text/css" href="{{asset('css/style2.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/style1.css')}}">
+
+
+
+{% endblock %}
+
+{% block body %}
+
+  <section class="section-inscription">
+
+  <div class="espace"></div>
+
+  <div class="container">
+            <div class="intro-text">
+                <br/>
+            
+            <div class="col-sm-8 col-sm-offset-2">    
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong> Créer votre compte utilisateur </strong>
+          </div>
+          <div class="panel-body">
+              <br>
+               {{form_start(form)}}
+
+               <!-- First name -->
+              <div class="form-group has-feedback">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  {{ form_widget(form.prenom, {'attr': {'class': 'form-control ','placeholder': 'Prénom'}}) }}
+                  
+                  </div>
+
+              </div>
+
+
+              <!-- Last name -->
+              <div class="form-group has-feedback">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              
+                  {{ form_widget(form.nom, {'attr': {'class': 'form-control ','placeholder': 'Nom'}}) }}
+                  
+                  </div>
+                
+              </div>
+
+              
+              <!-- Email adress -->
+              <div class="form-group has-feedback">
+                <div class="input-group">
+                  <span class="input-group-addon">@</span>
+                  {{ form_widget(form.email, {'attr': {'class': 'form-control ','placeholder': 'Email'}}) }}
+                  
+                  </div>
+              </div>
+          
+              <!-- Phone -->
+              <div class="form-group has-feedback">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                  <span class="input-group-addon">+216</span>
+                  {{ form_widget(form.telephone, {'attr': {'class': 'form-control ','placeholder': 'Téléphone'}}) }}
+                
+                  </div>
+                  
+              </div>
+
+              <!-- Fonction -->
+                    <div class="form-group has-feedback">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
+                        {{ form_widget(form.fonction,{'attr':{'class':'form-control','placeholder':'Fonction'}})}}
+                        </div>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                          
+              
+              
+              <!-- Password -->
+              <div class="form-group has-feedback">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                  {{ form_widget(form.password, {'attr': {'class': 'form-control ','placeholder': 'Votre mot de passe'}}) }}
+                  
+                  </div>
+              </div>
+          
+              
+              <!-- Confirm password -->
+              <div class="form-group has-feedback">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                
+                    {{ form_widget(form.confirm_password, {'attr': {'class': 'form-control ','placeholder': 'Confirmer le mot de passe'}}) }}
+                    
+                  </div>
+          
+              </div>
+              <!-- GCaptcha -->
+              <div class="form-group captcha">
+                <div class="input-group center-block" style="width: 50%;display: block;">
+                  <label for="exampleCaptcha">Are you a robot</label>
+                  {{ form_widget(form.captchaCode,{'attr':{'class':'form-control'}}) }}
+                  </div>                  
+              </div>
+              
+
+              
+              <!-- Message Errors-->  
+              {% set formErrors = form.vars.errors.form.getErrors(true) %}
+
+              {% if formErrors|length %}  
+                <div class="alert alert-danger">
+                  <ul>
+                    {% for error in formErrors %}
+                      <li> {{ error.message}}</li>
+                    {% endfor %}  
+                  </ul>
+                </div>
+              {% endif %}
+              <!-- Button --> 
+              <div class="form-group ">
+                <input id="submitForm" type="submit" value="Créer mon compte" class="btn btn-success btn-block"></input>
+              </div>
+                
+              {{ form_widget(form._token) }} <!-- render the CSRF Token-->
+              {{ form_end(form,{'render_rest': false})}} <!-- do not render anything else-->
+
+            
+          </div>
+  
+        </div>
+      </div>
+
+    </div>
+
+
+  </div><br><br>
+</section>
+
+
+{{include('footer/footer.html.twig')}}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}
+
